@@ -1,3 +1,5 @@
+require_relative 'manifest'
+
 class Chess
 
   def initialize
