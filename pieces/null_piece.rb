@@ -7,6 +7,10 @@ class NullPiece
     :none
   end
 
+  def empty?
+    true
+  end
+
   def to_s
     "   "
   end
