@@ -5,6 +5,7 @@ class Board
 
   def initialize
     @grid = Board.build_grid
+    @grid[0][0] = Knight.new(:black)
   end
 
   def rows

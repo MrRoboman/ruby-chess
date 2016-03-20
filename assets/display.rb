@@ -34,7 +34,7 @@ class Display
       bg = :blue
       # bg = :light_black
     end
-    { background: bg, color: :white }
+    { background: bg}#, color: :white }
   end
 
   def render
