@@ -4,6 +4,11 @@ class Board
   end
 
   def initialize
-    grid = Board.build_grid
+    @grid = Board.build_grid
+  end
+
+  def in_bounds?(pos)
+    x, y = pos
+    x.between?(0, 7) && y.between?(0, 7)
   end
 end
