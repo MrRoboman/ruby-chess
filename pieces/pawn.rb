@@ -9,12 +9,12 @@ class Pawn < Piece
   def deltas
     dlts = []
     if color == :white
-      dlts << [-1, 0]
+      dlts << [-1, 0] unless opponent?([-1, 0])
       dlts << [-1,-1] if opponent?([-1,-1])
       dlts << [-1, 1] if opponent?([-1, 1])
       dlts << [-2, 0] if home?
     else
-      dlts << [1, 0]
+      dlts << [1, 0] unless opponent?([1, 0])
       dlts << [1,-1] if opponent?([1,-1])
       dlts << [1, 1] if opponent?([1, 1])
       dlts << [2, 0] if home?

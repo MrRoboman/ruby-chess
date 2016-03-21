@@ -7,7 +7,7 @@ class Chess
     @display = Display.new(@board)
     @from_pos = nil
     @to_pos = nil
-    # players = [Player.new, Player.new]
+    players = [Player.new(:white), Player.new(:black)]
   end
 
   def play

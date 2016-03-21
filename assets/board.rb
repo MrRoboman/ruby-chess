@@ -7,10 +7,26 @@ class Board
 
   def initialize
     @grid = Board.build_grid
-    @grid[6][0] = Pawn.new(:white, [6, 0], self)
-    self[[1,0]] = Rook.new(:black, [1, 0], self)
-    self[[1,2]] = Rook.new(:black, [1, 2], self)
-    self[[5,2]] = Knight.new(:white, [5, 2], self)
+    setup
+    # @grid[6][0] = Pawn.new(:white, [6, 0], self)
+    # self[[1,0]] = Rook.new(:black, [1, 0], self)
+    # self[[1,2]] = Rook.new(:black, [1, 2], self)
+    # self[[5,2]] = Knight.new(:white, [5, 2], self)
+  end
+
+  def setup
+    royal = [Rook, Bishop, Knight, King, Queen, Knight, Bishop, Rook]
+
+    royal.each_with_index { |type, idx| make_piece(type, [0, idx], :black) }
+    8.times { |i| make_piece(Pawn, [1, i], :black) }
+
+    8.times { |i| make_piece(Pawn, [6, i], :white) }
+    royal.each_with_index { |type, idx| make_piece(type, [7, idx], :white) }
+
+  end
+
+  def make_piece(type, pos, color)
+    self[pos] = type.new(color, pos, self)
   end
 
   def rows
