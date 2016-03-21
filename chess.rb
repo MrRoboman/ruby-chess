@@ -13,6 +13,7 @@ class Chess
   def play
     while true
       @display.render
+      puts "check" if @board.check?(:white)
       get_input
       move_piece
     end
