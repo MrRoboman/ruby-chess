@@ -10,12 +10,22 @@ class Pawn < Piece
     dlts = []
     if color == :white
       dlts << [-1, 0]
+      dlts << [-1,-1] if opponent?([-1,-1])
+      dlts << [-1, 1] if opponent?([-1, 1])
       dlts << [-2, 0] if home?
     else
       dlts << [1, 0]
+      dlts << [1,-1] if opponent?([1,-1])
+      dlts << [1, 1] if opponent?([1, 1])
       dlts << [2, 0] if home?
     end
     dlts
+  end
+
+  def opponent?(delta)
+    x, y = @pos
+    dx, dy = delta
+    @board.opponent?([x+dx, y+dy], color)
   end
 
   def home?

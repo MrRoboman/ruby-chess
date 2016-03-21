@@ -22,7 +22,11 @@ module Slidable
     x, y = pos
     dx, dy = delta
     new_pos = [x+dx, y+dy]
+
     return [] unless @board.in_bounds?(new_pos)
+    return [] if @board.ally?(new_pos, color)
+    return [new_pos] if @board.opponent?(new_pos, color)
+    
     [new_pos] + get_moves(new_pos, delta)
   end
 

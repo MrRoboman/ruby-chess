@@ -8,6 +8,9 @@ class Board
   def initialize
     @grid = Board.build_grid
     @grid[6][0] = Pawn.new(:white, [6, 0], self)
+    self[[1,0]] = Rook.new(:black, [1, 0], self)
+    self[[1,2]] = Rook.new(:black, [1, 2], self)
+    self[[5,2]] = Knight.new(:white, [5, 2], self)
   end
 
   def rows
@@ -20,6 +23,17 @@ class Board
 
     piece.pos = to_pos
     self[to_pos] = piece
+  end
+
+  def opponent?(pos, color)
+
+    return false if self[pos].empty?
+    self[pos].color != color
+  end
+
+  def ally?(pos, color)
+    return false if self[pos].empty?
+    self[pos].color == color
   end
 
   def valid_from_pos?(pos, color = :either)
