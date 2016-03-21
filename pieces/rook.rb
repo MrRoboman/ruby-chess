@@ -6,7 +6,7 @@ class Rook < Piece
   end
 
   def deltas
-    DELTAS
+    ORTHOGONAL
   end
 
   def symbol

@@ -6,7 +6,7 @@ class Queen < Piece
   end
 
   def deltas
-    DELTAS
+    ORTHOGONAL + DIAGONAL
   end
 
   def symbol

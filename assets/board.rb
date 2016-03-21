@@ -7,7 +7,7 @@ class Board
 
   def initialize
     @grid = Board.build_grid
-    @grid[0][0] = King.new(:light_magenta, [0, 0], self)
+    @grid[6][0] = Pawn.new(:white, [6, 0], self)
   end
 
   def rows

@@ -6,7 +6,7 @@ class Bishop < Piece
   end
 
   def deltas
-    DELTAS
+    DIAGONAL
   end
 
   def symbol
