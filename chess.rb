@@ -24,7 +24,11 @@ class Chess
     if @from_pos.nil?
       @from_pos = pos if @board.valid_from_pos?(pos)
     elsif @to_pos.nil?
-      @to_pos = pos if @board.valid_to_pos?(@from_pos, pos)
+      if @board.valid_to_pos?(@from_pos, pos)
+        @to_pos = pos
+      elsif pos == @from_pos
+        @from_pos = nil
+      end
     end
   end
 

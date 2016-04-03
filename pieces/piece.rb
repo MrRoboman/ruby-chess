@@ -28,4 +28,13 @@ class Piece
     "#{self.class}#{color}"
   end
 
+  def valid_moves
+    valid_moves!.reject do |pos|
+      ghost_board = Board.new(@board)
+      ghost_board.move(@pos, pos)
+      ghost_board.check?(color)
+      # false
+    end
+  end
+
 end

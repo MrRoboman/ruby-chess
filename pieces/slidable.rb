@@ -10,7 +10,7 @@ module Slidable
     [-1, -1], [1, 1], [1, -1], [-1, 1]
   ]
 
-  def valid_moves
+  def valid_moves!
     moves = []
     deltas.each do |delta|
       moves.concat(get_moves(@pos, delta))
@@ -26,7 +26,7 @@ module Slidable
     return [] unless @board.in_bounds?(new_pos)
     return [] if @board.ally?(new_pos, color)
     return [new_pos] if @board.opponent?(new_pos, color)
-    
+
     [new_pos] + get_moves(new_pos, delta)
   end
 

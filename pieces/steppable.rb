@@ -2,7 +2,7 @@ require 'byebug'
 
 module Steppable
 
-  def valid_moves
+  def valid_moves!
     deltas.map do |dx, dy|
       [x+dx, y+dy]
     end.select do |pos|

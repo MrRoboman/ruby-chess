@@ -5,12 +5,19 @@ class Board
     Array.new(8) { Array.new(8) { NullPiece.instance} }
   end
 
-  def initialize
+  def initialize(copy_board = nil)
     @grid = Board.build_grid
     # setup
-    make_piece(King, [4,4], :white)
-    make_piece(Rook, [5,4], :black)
-
+    if copy_board.nil?
+      make_piece(King, [4,4], :white)
+      make_piece(King, [0,4], :black)
+      make_piece(Knight, [5,4], :white)
+      make_piece(Rook, [6,4], :black)
+    else
+      copy_board.pieces.each do |piece|
+        make_piece(piece.class, piece.pos, piece.color)
+      end
+    end
     # @grid[6][0] = Pawn.new(:white, [6, 0], self)
     # self[[1,0]] = Rook.new(:black, [1, 0], self)
     # self[[1,2]] = Rook.new(:black, [1, 2], self)
@@ -47,7 +54,7 @@ class Board
   end
 
   def check?(color)
-    all_valid_moves.include? king(color).pos
+    all_valid_moves!.include? king(color).pos
   end
 
   def pieces(color = :both)
@@ -60,6 +67,14 @@ class Board
     valid_moves = []
     pieces.each do |piece|
       valid_moves.concat(piece.valid_moves)
+    end
+    valid_moves
+  end
+
+  def all_valid_moves!
+    valid_moves = []
+    pieces.each do |piece|
+      valid_moves.concat(piece.valid_moves!)
     end
     valid_moves
   end
