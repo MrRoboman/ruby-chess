@@ -57,23 +57,30 @@ class Board
     all_valid_moves!.include? king(color).pos
   end
 
+  def check_mate?(color)
+    return false unless check?(color)
+    all_valid_moves(color).all? do |pos|
+      #TODO this
+    end
+  end
+
   def pieces(color = :both)
     pcs = @grid.flatten.reject(&:empty?)
     pcs.select! { |pc| pc.color == color } unless color == :both
     pcs
   end
 
-  def all_valid_moves
+  def all_valid_moves(color = :both)
     valid_moves = []
-    pieces.each do |piece|
+    pieces(color).each do |piece|
       valid_moves.concat(piece.valid_moves)
     end
     valid_moves
   end
 
-  def all_valid_moves!
+  def all_valid_moves!(color = :both)
     valid_moves = []
-    pieces.each do |piece|
+    pieces(color).each do |piece|
       valid_moves.concat(piece.valid_moves!)
     end
     valid_moves
@@ -88,7 +95,6 @@ class Board
   # end
 
   def opponent?(pos, color)
-
     return false if self[pos].empty?
     self[pos].color != color
   end
