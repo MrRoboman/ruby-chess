@@ -31,10 +31,10 @@ class Board
   def setup
     royal = [Rook, Bishop, Knight, King, Queen, Knight, Bishop, Rook]
 
-    # royal.each_with_index { |type, idx| make_piece(type, [0, idx], :black) }
-    # 8.times { |i| make_piece(Pawn, [1, i], :black) }
-    make_piece(Pawn, [1,7], :black)
-    # 8.times { |i| make_piece(Pawn, [6, i], :white) }
+    royal.each_with_index { |type, idx| make_piece(type, [0, idx], :black) }
+    8.times { |i| make_piece(Pawn, [1, i], :black) }
+
+    8.times { |i| make_piece(Pawn, [6, i], :white) }
     royal.each_with_index { |type, idx| make_piece(type, [7, idx], :white) }
 
   end
