@@ -2,9 +2,11 @@ require_relative 'manifest'
 require 'byebug'
 class Chess
 
+  attr_reader :from_pos
+
   def initialize
     @board = Board.new
-    @display = Display.new(@board)
+    @display = Display.new(@board, self)
     @from_pos = nil
     @to_pos = nil
     players = [Player.new(:white), Player.new(:black)]

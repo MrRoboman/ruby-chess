@@ -7,7 +7,6 @@ class Board
 
   def initialize(copy_board = nil)
     @grid = Board.build_grid
-    # setup
     if copy_board.nil?
       setup
       # make_piece(King, [4,4], :white)

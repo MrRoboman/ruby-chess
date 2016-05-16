@@ -3,7 +3,8 @@ require 'colorize'
 class Display
   include Cursorable
 
-  def initialize(board)
+  def initialize(board, chess)
+    @chess = chess
     @board = board
     @cursor_pos = [0, 0]
     @selected = nil
@@ -25,17 +26,17 @@ class Display
   end
 
   def colors_for(i, j)
-    if [i, j] == @cursor_pos
-      bg = :light_red
+    if [i, j] == @chess.from_pos
+      bg = :magenta
+      bg = :light_magenta if [i, j] == @cursor_pos
+    elsif [i, j] == @cursor_pos
       bg = :light_yellow
     elsif (i + j).odd?
       bg = :light_blue
-      # bg = :white
     else
       bg = :blue
-      # bg = :light_black
     end
-    { background: bg}#, color: :white }
+    { background: bg}
   end
 
   def render
