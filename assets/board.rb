@@ -9,10 +9,12 @@ class Board
     @grid = Board.build_grid
     # setup
     if copy_board.nil?
-      make_piece(King, [4,4], :white)
-      make_piece(King, [0,4], :black)
-      make_piece(Knight, [5,4], :white)
-      make_piece(Rook, [6,4], :black)
+      setup
+      # make_piece(King, [4,4], :white)
+      # make_piece(King, [0,4], :black)
+      # make_piece(Knight, [5,4], :white)
+      # make_piece(Rook, [6,4], :black)
+      # make_piece(Pawn, [2,0], :black)
     else
       copy_board.pieces.each do |piece|
         make_piece(piece.class, piece.pos, piece.color)
@@ -29,10 +31,10 @@ class Board
   def setup
     royal = [Rook, Bishop, Knight, King, Queen, Knight, Bishop, Rook]
 
-    royal.each_with_index { |type, idx| make_piece(type, [0, idx], :black) }
-    8.times { |i| make_piece(Pawn, [1, i], :black) }
-
-    8.times { |i| make_piece(Pawn, [6, i], :white) }
+    # royal.each_with_index { |type, idx| make_piece(type, [0, idx], :black) }
+    # 8.times { |i| make_piece(Pawn, [1, i], :black) }
+    make_piece(Pawn, [1,7], :black)
+    # 8.times { |i| make_piece(Pawn, [6, i], :white) }
     royal.each_with_index { |type, idx| make_piece(type, [7, idx], :white) }
 
   end
@@ -95,6 +97,7 @@ class Board
   # end
 
   def opponent?(pos, color)
+    return false unless in_bounds?(pos)
     return false if self[pos].empty?
     self[pos].color != color
   end
